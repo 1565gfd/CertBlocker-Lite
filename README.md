@@ -43,10 +43,11 @@ SHA-256 релиза **v1.0.1**:
 - Запуск возможен, если в системе разрешено выполнение `.exe`. При действующей
   политике AppLocker/SRP запуск сторонних программ может быть заблокирован.
 
-## Связанные версии
+## Версии
 
-[CertBlocker](https://github.com/1565gfd/CertBlocker) ·
-[CertBlocker-NoAdmin](https://github.com/1565gfd/CertBlocker-NoAdmin)
+- [CertBlocker](https://github.com/1565gfd/CertBlocker) — для всей системы, требуются права администратора.
+- [CertBlocker-NoAdmin](https://github.com/1565gfd/CertBlocker-NoAdmin) — для текущего пользователя, без прав администратора.
+- [CertBlocker-Lite](https://github.com/1565gfd/CertBlocker-Lite) — минимальная версия без прав администратора.
 
 ## Лицензия
 
