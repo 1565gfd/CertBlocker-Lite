@@ -104,6 +104,7 @@ namespace CertBlockerLite
 
         void Reload()
         {
+            list.BeginUpdate();
             list.Items.Clear();
             var st = Store();
             try
@@ -120,7 +121,7 @@ namespace CertBlockerLite
                 SetStatus("Заблокировано: " + list.Items.Count, false);
             }
             catch (Exception ex) { SetStatus("Ошибка: " + ex.Message, true); }
-            finally { st.Close(); }
+            finally { st.Close(); list.EndUpdate(); }
         }
 
         void BlockFromFile()
@@ -137,7 +138,7 @@ namespace CertBlockerLite
                         pub = new X509Certificate2(loaded.RawData);
                     st.Open(OpenFlags.ReadWrite);
                     bool exists = false;
-                    foreach (var c in st.Certificates) if (c.Thumbprint == pub.Thumbprint) { exists = true; break; }
+                    foreach (var c in st.Certificates) { if (c.Thumbprint == pub.Thumbprint) exists = true; c.Dispose(); }
                     if (exists) { SetStatus("Уже заблокирован.", false); return; }
                     st.Add(pub);
                     SetStatus("Заблокировано: " + Name(pub), false);

@@ -8,7 +8,7 @@ if (-not (Test-Path $csc)) { throw 'Не найден csc.exe (.NET Framework 4.
 $outDir = Join-Path $root 'build'
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $out = Join-Path $outDir 'CertBlockerLite.exe'
-& $csc /nologo /target:winexe "/out:$out" "/win32manifest:$root\src\app.manifest" `
+& $csc /nologo /optimize+ /target:winexe "/out:$out" "/win32manifest:$root\src\app.manifest" `
     /reference:System.dll /reference:System.Drawing.dll `
     /reference:System.Windows.Forms.dll /reference:System.Security.dll `
     "$root\src\Program.cs" "$root\src\AssemblyInfo.cs"
